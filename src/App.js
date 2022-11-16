@@ -11,18 +11,13 @@ function App() {
           中号主按钮
         </Button>
         <Button disabled>禁用按钮</Button>
-        <Button
-          btnType="link"
-          href="www.baidu.com"
-          onClick={() => {
-            console.log("点击不被禁用的按钮");
-          }}
-        >
-          a按钮不被禁用
+        <Button btnType="link" href="https://google.com">
+          link button
         </Button>
         <Button
           btnType="link"
           href="www.baidu.com"
+          target="_blank"
           disabled
           onClick={() => {
             console.log("点击被禁用按钮");

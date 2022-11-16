@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { AnchorHTMLAttributes, FC, HtmlHTMLAttributes } from "react";
 import classNames from "classnames";
 
 export type ButtonSize = "lg" | "sm";
@@ -14,8 +14,14 @@ interface BaseButtonProps {
   children: React.ReactNode;
   href?: string;
 }
+//使用交叉类型，把原生按钮的props和自定义props结合，原生a标签的props与自定义props结合
 
-const Button: FC<BaseButtonProps> = (props) => {
+type NativeButtonProps = BaseButtonProps &
+  React.ButtonHTMLAttributes<HTMLElement>;
+type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
+//我们要把原生元素的props变成全部可选的，这样有些必选就不会报错,用到typescript的高级用法Partial
+export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
+const Button: FC<ButtonProps> = (props) => {
   const { className, disabled, size, btnType, children, href, ...restProps } =
     props;
   const classes = classNames("btn", className, {
