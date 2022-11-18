@@ -1,4 +1,7 @@
 import Button from "./components/Button/button";
+import Menu from "./components/Menu/menu";
+import MenuItem from "./components/Menu/menuItem";
+
 function App() {
   return (
     <div className="App">
@@ -25,6 +28,18 @@ function App() {
         >
           a标签按钮禁用
         </Button>
+        <Menu
+          defaultIndex={0}
+          onSelect={(index) => {
+            alert(index);
+          }}
+        >
+          <MenuItem index={1}>cool link</MenuItem>
+          <MenuItem index={2} disabled>
+            cool link 2
+          </MenuItem>
+          <MenuItem index={3}>cool link3</MenuItem>
+        </Menu>
       </header>
     </div>
   );
