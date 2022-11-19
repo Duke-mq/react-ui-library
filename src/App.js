@@ -34,11 +34,21 @@ function App() {
             alert(index);
           }}
         >
-          <MenuItem index={1}>cool link</MenuItem>
-          <MenuItem index={2} disabled>
-            cool link 2
-          </MenuItem>
-          <MenuItem index={3}>cool link3</MenuItem>
+          <MenuItem>cool link</MenuItem>
+          <MenuItem disabled>cool link 2</MenuItem>
+          <MenuItem>cool link3</MenuItem>
+          <li>1</li>
+        </Menu>
+        <Menu
+          defaultIndex={0}
+          mode="vertical"
+          onSelect={(index) => {
+            console.log(index);
+          }}
+        >
+          <MenuItem>cool link</MenuItem>
+          <MenuItem>cool link 2</MenuItem>
+          <MenuItem>cool link3</MenuItem>
         </Menu>
       </header>
     </div>
