@@ -1,4 +1,5 @@
 import Button from "./components/Button/button";
+import Form from "./components/Form";
 import Menu from "./components/Menu/menu";
 import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
@@ -7,7 +8,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Button btnType="danger">危险按钮</Button>
+        {/* <Button btnType="danger">危险按钮</Button>
         <Button btnType="primary" size="lg">
           大号主按钮
         </Button>
@@ -55,7 +56,57 @@ function App() {
             <MenuItem>子菜单项2</MenuItem>
             <MenuItem>子菜单项3</MenuItem>
           </SubMenu>
-        </Menu>
+        </Menu> */}
+        <input
+          value={undefined}
+          onChange={(e) => {
+            console.log(e.target.value);
+          }}
+        />
+        <Form
+          onFinish={(value) => {
+            console.log("value", value);
+            alert("成功了");
+          }}
+        >
+          <Form.Item
+            name="item1"
+            rules={[
+              {
+                required: true,
+                message: "超过十个字符",
+                max: 10,
+              },
+            ]}
+          >
+            <input />
+          </Form.Item>
+          <Form.Item
+            name="item2"
+            rules={[
+              {
+                required: true,
+                message: "超过十一个字符",
+                max: 11,
+              },
+            ]}
+          >
+            <input />
+          </Form.Item>
+          <Form.Item
+            name="item3"
+            rules={[
+              {
+                required: true,
+                message: "超过十二个字符",
+                max: 12,
+              },
+            ]}
+          >
+            <input />
+          </Form.Item>
+          <Button type="submit">提交</Button>
+        </Form>
       </header>
     </div>
   );
