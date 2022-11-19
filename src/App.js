@@ -1,6 +1,7 @@
 import Button from "./components/Button/button";
 import Menu from "./components/Menu/menu";
 import MenuItem from "./components/Menu/menuItem";
+import SubMenu from "./components/Menu/subMenu";
 
 function App() {
   return (
@@ -49,6 +50,11 @@ function App() {
           <MenuItem>cool link</MenuItem>
           <MenuItem>cool link 2</MenuItem>
           <MenuItem>cool link3</MenuItem>
+          <SubMenu title="子菜单">
+            <MenuItem>子菜单项1</MenuItem>
+            <MenuItem>子菜单项2</MenuItem>
+            <MenuItem>子菜单项3</MenuItem>
+          </SubMenu>
         </Menu>
       </header>
     </div>

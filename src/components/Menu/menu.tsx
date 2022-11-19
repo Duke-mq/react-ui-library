@@ -24,8 +24,12 @@ export interface MenuProps {
 interface MenuContextType {
   index: number;
   onSelect?: selecteCallback;
+  mode?: MenuMode;
 }
-export const MenuContext = createContext<MenuContextType>({ index: 0 });
+export const MenuContext = createContext<MenuContextType>({
+  index: 0,
+  mode: "horizontal",
+});
 
 const Menu: FC<MenuProps> = (props) => {
   const { className, defaultIndex, mode, onSelect, style, children } = props;
@@ -33,7 +37,7 @@ const Menu: FC<MenuProps> = (props) => {
 
   const classes = classNames("menu", className, {
     "menu-horizontal": mode === "horizontal",
-    "menu-vertical": mode === "vertical",
+    "menu-vertical": mode !== "vertical",
   });
 
   const handleClick = useCallback(
@@ -48,6 +52,7 @@ const Menu: FC<MenuProps> = (props) => {
     () => ({
       index: currentActive ? currentActive : 0,
       onSelect: handleClick,
+      mode,
     }),
     [currentActive, handleClick]
   );
@@ -58,7 +63,7 @@ const Menu: FC<MenuProps> = (props) => {
         child as React.FunctionComponentElement<MenuItemProps>;
       const { displayName } = childElement?.type;
       // ??? Menu里面只能传MenuItem 组件或者SubMenu组件 这样做好像没有太大的必要
-      if (displayName === "MenuItem") {
+      if (displayName === "MenuItem" || displayName === "SubMenu") {
         return React.cloneElement(childElement, {
           index,
         });
