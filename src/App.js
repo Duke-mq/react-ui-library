@@ -3,6 +3,7 @@ import Form from "./components/Form";
 import Menu from "./components/Menu/menu";
 import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
+import ModelComponent from "./components/Model/index";
 
 function App() {
   return (
@@ -57,13 +58,8 @@ function App() {
             <MenuItem>子菜单项3</MenuItem>
           </SubMenu>
         </Menu> */}
-        <input
-          value={undefined}
-          onChange={(e) => {
-            console.log(e.target.value);
-          }}
-        />
-        <Form
+
+        {/* <Form
           onFinish={(value) => {
             console.log("value", value);
             alert("成功了");
@@ -106,7 +102,8 @@ function App() {
             <input />
           </Form.Item>
           <Button type="submit">提交</Button>
-        </Form>
+        </Form> */}
+        <ModelComponent />
       </header>
     </div>
   );
