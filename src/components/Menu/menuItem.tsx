@@ -17,6 +17,7 @@ const MenuItem: FC<MenuItemProps> = (props) => {
   });
 
   const handleClick = () => {
+    // disable的情况下不会触发操作
     if (context.onSelect && !disabled && typeof index === "number") {
       context.onSelect(index || 0);
     }

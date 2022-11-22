@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import Button from "../Button";
-import Model from "./component/model";
+import Model from "./component/index";
 
 const ModelComponent = () => {
   /**定义Modal是否显示 */
@@ -34,7 +34,7 @@ const ModelComponent = () => {
         onOk={handleOk}
         title={"弹窗测试组件"}
         visible={visible}
-        width={700}
+        width={300}
       >
         <div className="feel">测试弹窗</div>
       </Model>
@@ -44,4 +44,22 @@ const ModelComponent = () => {
   );
 };
 
-export default ModelComponent;
+const ModelShowComponent = () => {
+  const handleClick = () => {
+    Model.show({
+      content: <p>静态属性调用测试</p>,
+      title: "《React进阶实践指南》",
+      width: 300,
+      onOk: () => console.log("点击确定"),
+      onCancel: () => console.log("点击取消"),
+      onClose: () => Model.hidden(),
+    });
+  };
+  return (
+    <div>
+      <Button onClick={() => handleClick()}>静态方式调用,显示modal</Button>
+    </div>
+  );
+};
+
+export { ModelComponent, ModelShowComponent };

@@ -3,7 +3,7 @@ import Form from "./components/Form";
 import Menu from "./components/Menu/menu";
 import MenuItem from "./components/Menu/menuItem";
 import SubMenu from "./components/Menu/subMenu";
-import ModelComponent from "./components/Model/index";
+import { ModelShowComponent, ModelComponent } from "./components/Model/index";
 
 function App() {
   return (
@@ -30,7 +30,7 @@ function App() {
           }}
         >
           a标签按钮禁用
-        </Button>
+        </Button> */}
         <Menu
           defaultIndex={0}
           onSelect={(index) => {
@@ -57,7 +57,7 @@ function App() {
             <MenuItem>子菜单项2</MenuItem>
             <MenuItem>子菜单项3</MenuItem>
           </SubMenu>
-        </Menu> */}
+        </Menu>
 
         {/* <Form
           onFinish={(value) => {
@@ -104,6 +104,7 @@ function App() {
           <Button type="submit">提交</Button>
         </Form> */}
         <ModelComponent />
+        <ModelShowComponent />
       </header>
     </div>
   );

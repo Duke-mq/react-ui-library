@@ -56,7 +56,7 @@ export const Dialog: FC<DialogProps> = (props) => {
         setModelShowAync,
         setModelShow,
         visible || false,
-        1000
+        500
       );
     }
     return function () {

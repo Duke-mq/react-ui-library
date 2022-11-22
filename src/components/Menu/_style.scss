@@ -18,8 +18,7 @@
 
     &.is-disabled {
       color: $menu-item-disabled-color;
-      pointer-events: none;
-      cursor: default;
+      cursor: not-allowed;
     }
 
     &.is-active,

@@ -9,6 +9,10 @@ $bg-linear-gradien-red-dark: linear-gradient(135deg, #fc4838 0%, #f6346b 100%);
 }
 
 .feel {
+  display: flex;
+  justify-content: center;
+  flex-flow: 1;
+  background-color: rbga(119, 199, 119, 0.7);
   padding: 24px;
 }
 
@@ -32,6 +36,13 @@ $bg-linear-gradien-red-dark: linear-gradient(135deg, #fc4838 0%, #f6346b 100%);
   }
 }
 
+.model_footer {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  height: 50px;
+}
+
 .model_bottom {
   height: 50px;
   padding-top: 10px;
@@ -47,6 +58,7 @@ $bg-linear-gradien-red-dark: linear-gradient(135deg, #fc4838 0%, #f6346b 100%);
     position: absolute;
     border-radius: 5px;
     background: #fff;
+    height: 200px;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);

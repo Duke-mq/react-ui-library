@@ -1,7 +1,7 @@
-import React, { ReactNode, FC } from "react";
+import React, { ReactNode, FC, useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import Button from "../../Button";
 import { Dialog } from "./dialog";
-
 interface ModelProps {
   title: string;
   footer?: ReactNode;
@@ -11,12 +11,20 @@ interface ModelProps {
   onClose: () => void;
   cancelText?: string;
   okTest?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   closeCb?: () => void;
-  visible: boolean;
+  visible?: boolean;
   width?: number;
 }
-const Model: FC<ModelProps> = (props) => {
+
+interface managerProps {
+  mounted?: boolean;
+  setShow?: React.Dispatch<React.SetStateAction<boolean>> | null;
+  // hidden: () => void;
+  destory: () => void;
+}
+
+const Model: FC<ModelProps> = React.memo((props) => {
   const {
     footer,
     onOk,
@@ -89,6 +97,54 @@ const Model: FC<ModelProps> = (props) => {
     );
   };
   return renderModel();
-};
+});
+// const modelSysbol = Symbol("$$__model__Container_hidden");
+let ModalContainer: HTMLDivElement | null = null;
+/**通过静态属性创建/隐藏弹窗 */
+const show = (config: ModelProps) => {
+  if (ModalContainer) {
+    return;
+  }
+  const props = { ...config, visible: true };
+  const container = (ModalContainer = document.createElement("div"));
+  const manager: managerProps = {
+    setShow: null,
+    mounted: false,
+    hidden() {
+      const { setShow } = manager;
+      setShow && setShow(false);
+    },
 
-export default React.memo(Model);
+    destory() {
+      ReactDOM.unmountComponentAtNode(container);
+      document.body.removeChild(container);
+      ModalContainer = null;
+    },
+  };
+
+  const ModelApp = (props: ModelProps) => {
+    const [show, setShow] = useState(false);
+    manager.setShow = setShow;
+    const { visible, ...trueProps } = props;
+    useEffect(() => {
+      /* 加载完成，设置状态 */
+      manager.mounted = true;
+      setShow(true);
+    }, []);
+    return (
+      <Model
+        {...trueProps}
+        closeCb={() => manager.mounted && manager.destory()}
+        visible={show}
+      />
+    );
+  };
+  /* 插入到body中 */
+  document.body.appendChild(container);
+  /* 渲染React元素 */
+  ReactDOM.render(<ModelApp {...props} />, container);
+  return manager;
+};
+const hidden = () => {};
+
+export { Model, show, hidden };
