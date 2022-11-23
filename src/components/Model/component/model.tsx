@@ -20,7 +20,7 @@ interface ModelProps {
 interface managerProps {
   mounted?: boolean;
   setShow?: React.Dispatch<React.SetStateAction<boolean>> | null;
-  // hidden: () => void;
+  hidden: () => void;
   destory: () => void;
 }
 
